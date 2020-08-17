@@ -1,15 +1,13 @@
 const express = require("express"); //importation d'express 
 const bodyParser = require("body-parser"); //Permet d'extraire l'objet JSON des requêtes POST
-const mongoose = require("mongoose"); // Plugin Mongoose pour se connecter à la data base Mongo Db
-const path = require("path"); // Plugin qui sert dans l'upload des images et permet de travailler avec les répertoires et chemin de fichier.
-const helmet = require("helmet"); // Plugin qui permet de protéger l'application de certaines vulnérabilités en configurant de manière appropriée des en-têtes HTTP.
-//protection contre les attaques de type cross-site scripting et autres injections intersites
-//Protection contre les attaques de sniffing et clickjacking
+const mongoose = require("mongoose"); // Plugin Mongoose pour se connecter à la data base MongoDb
+const path = require("path"); // Plugin upload des images 
+const helmet = require("helmet"); // Plugin protection en-têtes HTTP: protection contre les attaques de type cross-site scripting et autres injections intersites
 
 const sauceRoutes = require("./routes/routes_sauce"); //Déclaration de la route sauce
 const userRoutes = require("./routes/routes_user"); //Déclaration de la route user
 
-//Connection à la base de données avec login et mot de passe
+//Connection à la base de données 
 mongoose.connect("mongodb+srv://Julie-1405:Maman-2020@cluster0.hxzko.mongodb.net/Cluster0?retryWrites=true&w=majority", //!!!!!!!!!!!!!!!!!!!!!!!!!!!
     { useNewUrlParser: true, useUnifiedTopology: true }) 
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -17,7 +15,7 @@ mongoose.connect("mongodb+srv://Julie-1405:Maman-2020@cluster0.hxzko.mongodb.net
 
 const app = express(); //L'application utilise le framework express
 
-//Middleware Header
+//headers
 app.use((request, response, next) => {
   response.setHeader("Access-Control-Allow-Origin", "*"); // accéder à l'API depuis toutes origines (pb CORS)
   response.setHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"); //Tous les headers de requêtes autorisés vers l'API

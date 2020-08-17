@@ -48,9 +48,9 @@ exports.login = (request, response, next) => {
           }
           response.status(200).json({
             userId: user._id,
-            token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", { //génération d'un token pour 24h
-              expiresIn: "24h",
-            }),
+            token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", //génération d'un token pour 24h - payload = user id
+            { expiresIn: "24h" }
+            )
           });
         })
         .catch((error) => response.status(500).json({ error }));
