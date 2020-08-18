@@ -18,7 +18,7 @@ schema
 exports.signup = (request, response, next) => {
   if (!schema.validate(request.body.password)) {
     //Test du format du mot de passe
-    return response.status(400).json({ error: "Merci de bien vouloir entrer un mot de passe valide !" });
+    return response.status(400).json({ error: "Mot de passe non conforme. Votre mot de passe doit contenir entre 8 et 12 caractères, au moins une majuscule, au moins une minuscule, au moins un chiffre. Les espaces ne sont pas autorisés" });
   } else if (schema.validate(request.body.password)) {
     bcrypt.hash(request.body.password, 10) //Salage du mot de passe à 10 reprises
       .then((hash) => {

@@ -8,7 +8,7 @@ const sauceRoutes = require("./routes/routes_sauce"); //Déclaration de la route
 const userRoutes = require("./routes/routes_user"); //Déclaration de la route user
 
 //Connection à la base de données 
-mongoose.connect("mongodb+srv://Julie-1405:Maman-2020@cluster0.hxzko.mongodb.net/Cluster0?retryWrites=true&w=majority", //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+mongoose.connect("mongodb+srv://Julie-1405:Maman-2020@cluster0.hxzko.mongodb.net/Cluster0?retryWrites=true&w=majority", 
     { useNewUrlParser: true, useUnifiedTopology: true }) 
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
