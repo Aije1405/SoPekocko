@@ -30,13 +30,11 @@ exports.updateSauce = (request, response, next) => {
             .then(() => {
               response.status(200).json({ message: "Sauce mise à jour!" });
             })
-            .catch((error) => {
-              response.status(400).json({ error: error });
+            .catch((error) => {response.status(400).json({ error: error });
             });
         });
       })
-      .catch((error) => {
-        response.status(500).json({ error });
+      .catch((error) => {response.status(500).json({ error });
       });
   } else {
     Sauce.updateOne({ _id: request.params.id },{ ...sauceObject, _id: request.params.id })
@@ -84,11 +82,9 @@ exports.likeSauce = (request, response, next) => {
                 $pull: { usersLiked: request.body.userId }, // retire le user id du tableau des likes
                 _id: request.params.id,
               })
-              .then(() => {
-                response.status(200).json({ message: "Votre avis a été supprimé" });
+              .then(() => {response.status(200).json({ message: "Votre avis a été supprimé" });
               })
-              .catch((error) => {
-                response.status(400).json({ error: error });
+              .catch((error) => {response.status(400).json({ error: error });
               });
           }
           if (sauce.usersDisliked.find((user) => user === request.body.userId)) { //comparaison avec l'user id car il est le seul à pouvoir agir sur ses dislikes
@@ -98,16 +94,13 @@ exports.likeSauce = (request, response, next) => {
                 $pull: { usersDisliked: request.body.userId }, // retire le user id du tableau des dislikes
                 _id: request.params.id,
               })
-              .then(() => {
-                response.status(200).json({ message: "Votre avis a été supprimé" });
+              .then(() => {response.status(200).json({ message: "Votre avis a été supprimé" });
               })
-              .catch((error) => {
-                response.status(400).json({ error: error });
+              .catch((error) => {response.status(400).json({ error: error });
               });
           }
         })
-        .catch((error) => {
-          response.status(404).json({ error: error });
+        .catch((error) => {response.status(404).json({ error: error });
         });
       break;
 
@@ -119,11 +112,9 @@ exports.likeSauce = (request, response, next) => {
           $push: { usersLiked: request.body.userId }, //ajoute le user id dans le tableau des likes
           _id: request.params.id,
         })
-        .then(() => {
-          response.status(200).json({ message: "Merci ! Votre avis a été pris en compte" });
+        .then(() => {response.status(200).json({ message: "Merci ! Votre avis a été pris en compte" });
         })
-        .catch((error) => {
-          response.status(400).json({ error: error });
+        .catch((error) => {response.status(400).json({ error: error });
         });
       break;
 
@@ -135,11 +126,9 @@ exports.likeSauce = (request, response, next) => {
           $push: { usersDisliked: request.body.userId }, //ajoute le user id dans le tableau des dislikes
           _id: request.params.id,
         })
-        .then(() => {
-          response.status(200).json({ message: "Merci ! Votre avis a été pris en compte!" });
+        .then(() => {response.status(200).json({ message: "Merci ! Votre avis a été pris en compte!" });
         })
-        .catch((error) => {
-          response.status(400).json({ error: error });
+        .catch((error) => {response.status(400).json({ error: error });
         });
       break;
     default:
