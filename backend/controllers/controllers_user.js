@@ -28,7 +28,7 @@ exports.signup = (request, response, next) => {
         });
         user.save()
           .then(() => response.status(201).json({ message: "Utilisateur créé!" }))
-          .catch((error) => response.status(400).json({ error }));
+          .catch((error) => response.status(400).json({ message: "Cet utilisateur a déjà été créé" }));
       })
       .catch((error) => response.status(500).json({ error }));
   }
