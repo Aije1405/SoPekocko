@@ -1,6 +1,9 @@
 const express = require("express"); //importation d'express 
 const bodyParser = require("body-parser"); //Permet d'extraire l'objet JSON des requêtes POST
 const mongoose = require("mongoose"); // Plugin Mongoose pour se connecter à la data base MongoDb
+
+require('dotenv').config();
+
 const path = require("path"); // Plugin upload des images 
 const helmet = require("helmet"); // Plugin protection en-têtes HTTP: protection contre les attaques de type cross-site scripting les, injections intersites, le reniflage, le clickjacking...
 
@@ -8,7 +11,7 @@ const sauceRoutes = require("./routes/routes_sauce"); //Déclaration de la route
 const userRoutes = require("./routes/routes_user"); //Déclaration de la route user
 
 //Connection à la base de données 
-mongoose.connect("mongodb+srv://Julie-1405:Maman-2020@cluster0.hxzko.mongodb.net/Cluster0?retryWrites=true&w=majority", 
+mongoose.connect(process.env.mongoose_URL,
     { useNewUrlParser: true, useUnifiedTopology: true }) 
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));

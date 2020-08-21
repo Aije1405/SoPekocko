@@ -45,7 +45,7 @@ server.on("listening", () => {
   console.log("Listening on " + bind);
 });
 
-server.listen(port); //Le serveur écoute le prt définit plus haut
+server.listen(port); //Le serveur écoute le port définit plus haut
 
 
 
